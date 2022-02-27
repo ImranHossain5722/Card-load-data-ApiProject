@@ -8,19 +8,24 @@ const searchButton =()=>{
     // alert("please put a number" )
     error.innerText =" * please give a number"
     input.value ="";
+    main.innerHTML="";
  }else if (inputValue <= 0){
 
     error.innerText = " * please give a Positive number"
     input.value ="";
+    main.innerHTML="";
  }else if (inputValue > 52) {
     error.innerText = " * Please enter less than 52 numbers"
     input.value ="";
+    main.innerHTML="";
 
  }else{
     fetch (`https://deckofcardsapi.com/api/deck/new/draw/?count=${inputValue}`)
     .then(res => res.json())
     .then(dataLoad => cardDisplay(dataLoad.cards))
-    input.value =""   
+    input.value =""
+    main.innerHTML="";
+    error.innerText = ""   
 }
 
 

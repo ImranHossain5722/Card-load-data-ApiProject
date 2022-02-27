@@ -1,1 +1,1 @@
-sty
+ fetch ('https://deckofcardsapi.com/api/deck/new/draw/?count=2')

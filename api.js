@@ -44,14 +44,40 @@ const cardDisplay = (cardDataLoad) =>{
         <div class="card-body">
           <h5 class="card-title">${card.suit}</h5>
           <p class="card-text">${card.value}</p>
-          <a href="#" class="btn btn-primary">Go Card Details </a>
+          <a href="#" id="seeMore" onclick="seeDetails('${card.code}')" class="btn btn-primary">Go Card Details </a>
         </div>
       </div>
         `
         main.appendChild(div)
 
-        console.log(card);
+
  }
 
+}
+
+const seeDetails=(code)=>{
+
+fetch(`https://deckofcardsapi.com/api/deck/new/draw/?count=52`)
+    .then(res => res.json())
+    .then(dataLoad => {
+        const allCard = dataLoad.cards;
+        
+        const singleCard = allCard.find( card => card.code === code)
+
+        const div = document.createElement('div')
+        main.innerHTML ="";
+        div.innerHTML =`
+
+        <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">${singleCard.suit}</h5>
+          <p class="card-text">${singleCard.value}</p>
+        </div>
+      </div>
+      `
+      main.appendChild(div)
+
+    })
+  
 }
 
